@@ -1,26 +1,64 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-accent: #078dee;
+  --color-primary-dark: #1c252e;
+  --color-primary-light: #ffffff;
+  --color-secondary-dark: #637381;
+  --color-muted: #637381;
+  --color-light-muted: #ebebeb;
+  --color-bg-dim: #f4f6f8;
+  --color-bg-light: #ffffff;
+  --color-error: #cc0000;
+  --color-warning: #eed202;
+  --color-blur-cyan: #e8f8fb;
+
+  --border-color-light-blue: #919eab;
+  --border-color-lighter-blue: #c3d3e3;
+  --border-color-lightest-blue: #dee9f3;
+
+  --shadow-shadow-1:
+    0px 2px 4px -1px rgba(145 158 171 / 0.2),
+    0px 4px 5px 0px rgba(145 158 171 / 0.14),
+    0px 1px 10px 0px rgba(145 158 171 / 0.12);
+  --shadow-paper: 0 1px 2px 0 rgba(145 158 171 / 0.16);
+
+  --font-geist-sans:
+    var(--font-geist-sans), var(--font-geist-mono), sans-serif;
+    --font-geist-mono:
+    var(--font-geist-mono), var(--font-geist-sans), sans-serif;
+
+  --text-2xs: 0.6875rem;
+
+  --transition-duration-ui: 300ms;
+  --transition-duration-layout: 500ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
+:root {
+  --foreground: #171717;
+}
+
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  @apply font-geist-mono bg-bg-dim
 }
